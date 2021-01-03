@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 
-const primaryColor = Color(0xFFE57373);
-const primaryLightColor = Color(0xFFFFEBEE);
+const primaryColor = Color(0xFFfb5e5e);
+//E57373
+const primaryLightColor = Color(0xFFfb706f);
+//FFEBEE
+
 const primaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
-  colors: [Color(0xFFEF9A9A), Color(0xFFE57373)],
+  colors: [Color(0xFFff9c9c), Color(0xFFfb5e5e)],
 );
 const secondaryGradientColor = LinearGradient(
-  begin: Alignment.topCenter,
-  end: Alignment.bottomCenter,
-  colors: [Color(0xFFEF9A9A), Color(0xFFE57373)],
+  begin: Alignment.bottomCenter,
+  end: Alignment.topCenter,
+  colors: [Color(0xFFff9c9c), Color(0xFFfb5e5e)],
 );
 const secondaryColor = Color(0xFF979797);
 const textColor = Color(0xFF757575);
-const secondaryTextColor = Colors.white;
+
+const whiteColor = Colors.white;
+
 const animationDuration = Duration(microseconds: 300);

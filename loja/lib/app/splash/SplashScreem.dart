@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:loja/constants.dart';
 import 'package:loja/routes/AppRoutes.dart';
+import 'package:loja/shared/Constants.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -37,11 +37,10 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: primaryColor,
+      backgroundColor: whiteColor,
       body: Center(
         child: Image.asset(
-          'assets/images/1.png',
-          height: 200,
+          'assets/images/2.png',
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loja/app/login/LoginScreem.dart';
+import 'package:loja/shared/theme.dart';
 
 import 'app/splash/SplashScreem.dart';
 import 'routes/AppRoutes.dart';
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
+        inputDecorationTheme: inputDecorationTheme(),
       ),
       routes: {
         AppRoutes.SPLASH: (_) => Splash(),
