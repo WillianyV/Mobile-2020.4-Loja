@@ -18,9 +18,9 @@ class _SplashState extends State<Splash> {
 
   void navigate() {
     print('navigate');
-    bool flag = false;
+    bool flag = true;
     if (flag) {
-      print('TELA HOME');
+      Navigator.of(context).pushNamed(AppRoutes.USER_LIST);
       return;
     } else {
       Navigator.of(context).pushNamed(AppRoutes.LOGIN);

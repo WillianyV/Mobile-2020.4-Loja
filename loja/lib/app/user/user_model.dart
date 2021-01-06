@@ -9,7 +9,7 @@ class User {
   final String password;
   final String cpf;
   final String phone;
-  final Address address;
+  // final Address address;
   final String avatarUrl;
 
   const User({
@@ -20,7 +20,7 @@ class User {
     @required this.password,
     @required this.cpf,
     @required this.phone,
-    @required this.address,
+    //  @required this.address,
     @required this.avatarUrl,
   });
 }
