@@ -18,9 +18,9 @@ class _SplashState extends State<Splash> {
 
   void navigate() {
     print('navigate');
-    bool flag = true;
+    bool flag = false;
     if (flag) {
-      Navigator.of(context).pushNamed(AppRoutes.USER_LIST);
+      Navigator.of(context).pushNamed(AppRoutes.FORGOT_PASSWORD);
       return;
     } else {
       Navigator.of(context).pushNamed(AppRoutes.LOGIN);

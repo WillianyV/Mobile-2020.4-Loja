@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loja/components/default_button.dart';
+import 'package:loja/routes/AppRoutes.dart';
 import 'package:loja/shared/Constants.dart';
 
 class Login extends StatefulWidget {
@@ -99,7 +100,8 @@ class _LoginState extends State<Login> {
                     ),
                     Container(height: 20),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () => Navigator.pushNamed(
+                          context, AppRoutes.FORGOT_PASSWORD),
                       child: Text(
                         'Esqueceu a senha?',
                         style: TextStyle(decoration: TextDecoration.underline),
@@ -109,7 +111,7 @@ class _LoginState extends State<Login> {
                     GestureDetector(
                       onTap: () {},
                       child: Text(
-                        'Registre-se',
+                        'Cadastre-se',
                         style: TextStyle(decoration: TextDecoration.underline),
                       ),
                     ),
