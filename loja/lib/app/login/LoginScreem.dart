@@ -10,118 +10,156 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _showPassword = false;
+  final _formLogin = GlobalKey<FormState>();
+
   Widget _body() {
     return Container(
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 2.5,
-              decoration: BoxDecoration(
-                  gradient: secondaryGradientColor,
-                  borderRadius:
-                      BorderRadius.only(bottomLeft: Radius.circular(90))),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Spacer(),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Image.asset(
-                        'assets/images/3.png',
-                        height: 50,
+        child: Form(
+          key: _formLogin,
+          child: Column(
+            children: [
+              headLoginContainer(),
+              SizedBox(
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      Container(height: 20),
+                      emailTextFormField(),
+                      Container(height: 20),
+                      passwordTextFormField(),
+                      Container(height: 30),
+                      DefaultButton(
+                        text: 'Entrar',
+                        press: () {
+                          if (_formLogin.currentState.validate()) {
+                            //ir para o menu do cliente
+                          }
+                        },
                       ),
-                    ),
+                      Container(height: 20),
+                      GestureDetector(
+                        onTap: () => Navigator.pushNamed(
+                            context, AppRoutes.FORGOT_PASSWORD),
+                        child: Text(
+                          'Esqueceu a senha?',
+                          style:
+                              TextStyle(decoration: TextDecoration.underline),
+                        ),
+                      ),
+                      Container(height: 20),
+                      GestureDetector(
+                        onTap: () => Navigator.pushNamed(
+                            context, AppRoutes.USER_REGISTER),
+                        child: Text(
+                          'Cadastre-se',
+                          style:
+                              TextStyle(decoration: TextDecoration.underline),
+                        ),
+                      ),
+                    ],
                   ),
-                  Spacer(),
-                  Align(
-                      alignment: Alignment.bottomRight,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 32, right: 32.0),
-                        child: Text('Login',
-                            style: TextStyle(color: whiteColor, fontSize: 20)),
-                      )),
-                ],
-              ),
-            ),
-            SizedBox(
-              child: Padding(
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    Container(height: 20),
-                    TextFormField(
-                      decoration: InputDecoration(
-                          labelText: "E-mail",
-                          hintText: "Entre com o seu e-mail",
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          //suffixIcon: SvgPicture.asset('assets/icons/Mail.svg'),
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: Icon(Icons.mail_outline),
-                          )),
-                    ),
-                    Container(height: 20),
-                    TextFormField(
-                      obscureText: _showPassword == false ? true : false,
-                      decoration: InputDecoration(
-                          labelText: "Senha",
-                          hintText: "Digite a senha",
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          //suffixIcon: SvgPicture.asset('assets/icons/Mail.svg'),
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: Icon(Icons.vpn_key_outlined),
-                          ),
-                          suffixIcon: GestureDetector(
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 20),
-                              child: Icon(
-                                _showPassword == false
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            onTap: () {
-                              setState(() {
-                                _showPassword = !_showPassword;
-                              });
-                            },
-                          )),
-                    ),
-                    Container(height: 30),
-                    DefaultButton(
-                      text: 'Entrar',
-                      press: () {},
-                    ),
-                    Container(height: 20),
-                    GestureDetector(
-                      onTap: () => Navigator.pushNamed(
-                          context, AppRoutes.FORGOT_PASSWORD),
-                      child: Text(
-                        'Esqueceu a senha?',
-                        style: TextStyle(decoration: TextDecoration.underline),
-                      ),
-                    ),
-                    Container(height: 20),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text(
-                        'Cadastre-se',
-                        style: TextStyle(decoration: TextDecoration.underline),
-                      ),
-                    ),
-                  ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Container headLoginContainer() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height / 2.5,
+      decoration: BoxDecoration(
+          gradient: secondaryGradientColor,
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(90))),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Spacer(),
+          Align(
+            alignment: Alignment.center,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Image.asset(
+                'assets/images/3.png',
+                height: 50,
+              ),
+            ),
+          ),
+          Spacer(),
+          Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 32, right: 32.0),
+                child: Text('Login',
+                    style: TextStyle(color: whiteColor, fontSize: 20)),
+              )),
+        ],
+      ),
+    );
+  }
+
+  TextFormField passwordTextFormField() {
+    return TextFormField(
+      obscureText: _showPassword == false ? true : false,
+      decoration: InputDecoration(
+        labelText: "Senha",
+        hintText: "Digite a senha",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        //suffixIcon: SvgPicture.asset('assets/icons/Mail.svg'),
+        prefixIcon: Padding(
+          padding: const EdgeInsets.only(left: 5),
+          child: Icon(Icons.vpn_key_outlined),
+        ),
+        suffixIcon: GestureDetector(
+          child: Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: Icon(
+              _showPassword == false ? Icons.visibility_off : Icons.visibility,
+              color: Colors.grey,
+            ),
+          ),
+          onTap: () {
+            setState(() {
+              _showPassword = !_showPassword;
+            });
+          },
+        ),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'Senha vazia.';
+        }
+        if (value.trim().length < 6) {
+          return 'Senha pequena. No mínimo 6 caracteres.';
+        }
+        return null;
+      },
+    );
+  }
+
+  TextFormField emailTextFormField() {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: "E-mail",
+        hintText: "Entre com o seu e-mail",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        //suffixIcon: SvgPicture.asset('assets/icons/Mail.svg'),
+        prefixIcon: Padding(
+          padding: const EdgeInsets.only(left: 5),
+          child: Icon(Icons.mail_outline),
+        ),
+      ),
+      validator: (value) {
+        if (value == null || value.trim().isEmpty) {
+          return 'E-mail vazio.';
+        }
+        return null;
+      },
     );
   }
 

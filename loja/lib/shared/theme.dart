@@ -11,7 +11,7 @@ InputDecorationTheme inputDecorationTheme() {
       borderSide: BorderSide(color: textColor),
       gapPadding: 10);
   return InputDecorationTheme(
-    contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 20),
+    contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
     enabledBorder: outlineInputBorder,
     focusedBorder: outlineInputBorder,
     border: outlineInputBorder,

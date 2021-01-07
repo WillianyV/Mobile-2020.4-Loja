@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loja/app/forgot_password/forgot_password_screen.dart';
 import 'package:loja/app/login/LoginScreem.dart';
+import 'package:loja/app/user/user_%20register_screen.dart';
 import 'package:loja/shared/theme.dart';
 
 import 'app/splash/SplashScreem.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.SPLASH: (_) => Splash(),
         AppRoutes.LOGIN: (_) => Login(),
         AppRoutes.FORGOT_PASSWORD: (_) => ForgotPasswordScreen(),
+        AppRoutes.USER_REGISTER: (_) => UserRegister(),
       },
     );
   }
