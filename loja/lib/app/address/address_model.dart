@@ -6,6 +6,7 @@ class Address {
   final String state;
   final String city;
   final String neighborhood;
+  final String street;
   final String number;
   final String complement;
 
@@ -15,7 +16,8 @@ class Address {
     @required this.state,
     @required this.city,
     @required this.neighborhood,
+    @required this.street,
     @required this.number,
-    @required this.complement,
+    this.complement,
   });
 }
