@@ -4,4 +4,5 @@ class AppRoutes {
   static const LOGIN = '/login';
   static const FORGOT_PASSWORD = '/forgot-password';
   static const USER_REGISTER = '/user-register';
+  static const ECOMMECER_HOME = '/e-commecer-home';
 }

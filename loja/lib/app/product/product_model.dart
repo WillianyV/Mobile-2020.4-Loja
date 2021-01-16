@@ -7,7 +7,6 @@ class Product {
   final String size;
   final double price, discount;
   final String category;
-  final bool isFavourite;
 
   const Product({
     this.id,
@@ -15,8 +14,7 @@ class Product {
     @required this.description,
     @required this.size,
     @required this.price,
-    @required this.discount,
+    this.discount,
     @required this.category,
-    this.isFavourite,
   });
 }

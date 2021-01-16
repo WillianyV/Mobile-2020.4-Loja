@@ -34,7 +34,9 @@ class _LoginState extends State<Login> {
                         text: 'Entrar',
                         press: () {
                           if (_formLogin.currentState.validate()) {
-                            //ir para o menu do cliente
+                            //ir para o menu do cliente ou adm
+                            Navigator.pushNamed(
+                                context, AppRoutes.ECOMMECER_HOME);
                           }
                         },
                       ),
@@ -84,9 +86,10 @@ class _LoginState extends State<Login> {
             alignment: Alignment.center,
             child: Padding(
               padding: const EdgeInsets.only(left: 10),
-              child: Image.asset(
-                'assets/images/3.png',
-                height: 50,
+              child: Icon(
+                Icons.shopping_bag_outlined,
+                size: 90,
+                color: whiteColor,
               ),
             ),
           ),
@@ -120,7 +123,7 @@ class _LoginState extends State<Login> {
             padding: const EdgeInsets.only(right: 20),
             child: Icon(
               _showPassword == false ? Icons.visibility_off : Icons.visibility,
-              color: Colors.grey,
+              color: greyColor,
             ),
           ),
           onTap: () {

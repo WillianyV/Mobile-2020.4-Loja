@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loja/app/ecommerce/ecommerce_home_Screem.dart';
 import 'package:loja/app/forgot_password/forgot_password_screen.dart';
 import 'package:loja/app/login/LoginScreem.dart';
 import 'package:loja/app/user/user_%20register_screen.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.LOGIN: (_) => Login(),
         AppRoutes.FORGOT_PASSWORD: (_) => ForgotPasswordScreen(),
         AppRoutes.USER_REGISTER: (_) => UserRegister(),
+        AppRoutes.ECOMMECER_HOME: (_) => ECommecerHome(),
       },
     );
   }

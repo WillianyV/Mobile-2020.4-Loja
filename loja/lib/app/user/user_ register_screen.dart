@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:loja/components/default_button.dart';
+import 'package:loja/shared/Constants.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class UserRegister extends StatefulWidget {
@@ -69,7 +70,7 @@ class _UserRegisterState extends State<UserRegister> {
             padding: const EdgeInsets.only(right: 20),
             child: Icon(
               _showPassword == false ? Icons.visibility_off : Icons.visibility,
-              color: Colors.grey,
+              color: greyColor,
             ),
           ),
           onTap: () {
@@ -145,7 +146,7 @@ class _UserRegisterState extends State<UserRegister> {
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: Padding(
           padding: const EdgeInsets.only(left: 5),
-          child: Icon(Icons.person_pin_outlined),
+          child: Icon(Icons.account_box_outlined),
         ),
       ),
       validator: (value) {

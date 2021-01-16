@@ -16,8 +16,10 @@ const secondaryGradientColor = LinearGradient(
   colors: [Color(0xFFff9c9c), Color(0xFFfb5e5e)],
 );
 const secondaryColor = Color(0xFF979797);
+const btnColor = Color(0xFFF5F6F9);
 const textColor = Color(0xFF757575);
 
 const whiteColor = Colors.white;
+const greyColor = Colors.grey;
 
 const animationDuration = Duration(microseconds: 300);
