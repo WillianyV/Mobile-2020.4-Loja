@@ -13,6 +13,10 @@ class RepositoryShared {
     print("${url_login}${login}/${senha}");
     Response response = await this.dio.get("${url_login}${login}/${senha}");
 
-    return true;
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
