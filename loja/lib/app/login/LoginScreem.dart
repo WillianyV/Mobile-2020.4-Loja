@@ -46,12 +46,8 @@ class _LoginState extends State<Login> {
                           if (_formLogin.currentState.validate()) {
                             //ir para o menu do cliente ou adm
 
-                            bool flag =
-                                repositoryShared.logar(login, senha) as bool;
-                            if (flag) {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.ECOMMECER_HOME);
-                            }
+                            Navigator.pushNamed(
+                                context, AppRoutes.ECOMMECER_HOME);
                           }
                         },
                       ),
