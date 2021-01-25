@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:loja/components/default_button.dart';
 import 'package:loja/routes/AppRoutes.dart';
@@ -11,6 +12,19 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   bool _showPassword = false;
   final _formLogin = GlobalKey<FormState>();
+  Dio dio;
+  var login, senha;
+
+  void initState() {
+    super.initState();
+
+    BaseOptions options = new BaseOptions(
+      baseUrl: "192.168.100.8:8080/api/",
+      connectTimeout: 5000,
+    );
+
+    dio = Dio(options);
+  }
 
   Widget _body() {
     return Container(
@@ -35,8 +49,8 @@ class _LoginState extends State<Login> {
                         press: () {
                           if (_formLogin.currentState.validate()) {
                             //ir para o menu do cliente ou adm
-                            Navigator.pushNamed(
-                                context, AppRoutes.ECOMMECER_HOME);
+
+                            logar();
                           }
                         },
                       ),
@@ -142,6 +156,11 @@ class _LoginState extends State<Login> {
         }
         return null;
       },
+      onChanged: (value) {
+        setState(() {
+          senha = value;
+        });
+      },
     );
   }
 
@@ -163,6 +182,11 @@ class _LoginState extends State<Login> {
         }
         return null;
       },
+      onChanged: (value) {
+        setState(() {
+          login = value;
+        });
+      },
     );
   }
 
@@ -171,5 +195,15 @@ class _LoginState extends State<Login> {
     return Scaffold(
       body: _body(),
     );
+  }
+
+  Future<void> logar() async {
+    Response response = await dio.get("/loja/$login/$senha");
+    if (response.statusCode == 200) {
+      print("entrou");
+      Navigator.pushNamed(context, AppRoutes.ECOMMECER_HOME);
+    } else {
+      print("Não logou");
+    }
   }
 }
