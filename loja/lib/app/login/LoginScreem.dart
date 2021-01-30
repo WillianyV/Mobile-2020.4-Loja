@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:loja/app/login/repository_shared.dart';
 import 'package:loja/components/default_button.dart';
 import 'package:loja/routes/AppRoutes.dart';
 import 'package:loja/shared/Constants.dart';
@@ -11,6 +13,14 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   bool _showPassword = false;
   final _formLogin = GlobalKey<FormState>();
+  var login, senha;
+
+  RepositoryShared repositoryShared;
+
+  void initState() {
+    super.initState();
+    repositoryShared = RepositoryShared();
+  }
 
   Widget _body() {
     return Container(
@@ -35,6 +45,7 @@ class _LoginState extends State<Login> {
                         press: () {
                           if (_formLogin.currentState.validate()) {
                             //ir para o menu do cliente ou adm
+
                             Navigator.pushNamed(
                                 context, AppRoutes.ECOMMECER_HOME);
                           }
@@ -142,6 +153,11 @@ class _LoginState extends State<Login> {
         }
         return null;
       },
+      onChanged: (value) {
+        setState(() {
+          senha = value;
+        });
+      },
     );
   }
 
@@ -163,6 +179,11 @@ class _LoginState extends State<Login> {
         }
         return null;
       },
+      onChanged: (value) {
+        setState(() {
+          login = value;
+        });
+      },
     );
   }
 
@@ -172,4 +193,6 @@ class _LoginState extends State<Login> {
       body: _body(),
     );
   }
+
+  Future<void> logar() async {}
 }
