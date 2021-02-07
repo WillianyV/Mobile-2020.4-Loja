@@ -13,13 +13,23 @@ class ECommerce {
   final List<Sale> sales;
 
   const ECommerce({
-    this.id,
+    @required this.id,
     @required this.name,
     @required this.cnpj,
     @required this.phone,
     @required this.email,
     @required this.password,
-    this.address,
+    @required this.address,
     this.sales,
   });
+
+  factory ECommerce.fromJson(Map<String, dynamic> json) => ECommerce(
+        id: json["id"],
+        name: json["nome"],
+        cnpj: json["cnpj"],
+        phone: json["telefone"],
+        email: json["email"],
+        password: json["senha"],
+        address: Address.fromJson(json["endereco"]),
+      );
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:loja/components/drawer_loja.dart';
 import 'package:loja/routes/AppRoutes.dart';
 import 'package:loja/shared/Constants.dart';
+import 'package:loja/shared/repository_shared.dart';
 
 class ECommecerHome extends StatefulWidget {
   @override
@@ -9,6 +11,11 @@ class ECommecerHome extends StatefulWidget {
 
 class _ECommecerHome extends State<ECommecerHome> {
   //User user; vai ser loja
+  RepositoryShared repositoryShared;
+
+  void initState() {
+    super.initState();
+  }
 
   Widget _body() {
     return Padding(
@@ -88,7 +95,9 @@ class _ECommecerHome extends State<ECommecerHome> {
       padding: EdgeInsets.all(20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       color: btnColor,
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, AppRoutes.PRODUCT_LIST);
+      },
       child: Row(
         children: [
           Icon(
@@ -114,37 +123,7 @@ class _ECommecerHome extends State<ECommecerHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: Column(
-          children: [
-            UserAccountsDrawerHeader(
-              currentAccountPicture:
-                  (Icon(Icons.account_circle, size: 30, color: whiteColor)),
-              accountName: Text('Williany'), //loja.name
-              accountEmail: Text('williany.veras@gmail.com'), //loja.email
-            ),
-            ListTile(
-              leading: Icon(Icons.home_outlined),
-              title: Text('Início'),
-              subtitle: Text('Tela de início'),
-              onTap: () =>
-                  Navigator.pushNamed(context, AppRoutes.ECOMMECER_HOME),
-            ),
-            ListTile(
-              leading: Icon(Icons.business_outlined),
-              title: Text('Loja'),
-              subtitle: Text('Minha conta'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Logout'),
-              subtitle: Text('Sair'),
-              onTap: () => Navigator.pushNamed(context, AppRoutes.LOGIN),
-            ),
-          ],
-        ),
-      ),
+      drawer: DrawerLoja(),
       appBar: AppBar(
         title: Text('Página do Administrador'),
       ),
