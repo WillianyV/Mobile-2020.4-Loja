@@ -32,8 +32,12 @@ class _Product_ListState extends State<Product_List> {
   Widget _body() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-      child: Column(
-        children: [],
+      child: SingleChildScrollView(
+        child: Form(
+          child: Column(
+            children: [],
+          ),
+        ),
       ),
     );
   }
