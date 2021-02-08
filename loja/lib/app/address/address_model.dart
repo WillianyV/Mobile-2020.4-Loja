@@ -20,4 +20,12 @@ class Address {
     @required this.number,
     this.complement,
   });
+
+  factory Address.fromJson(Map<String, dynamic> json) => Address(
+      postcode: json["cep"],
+      state: json["estado"],
+      city: json["cidade"],
+      neighborhood: json["bairro"],
+      street: json["rua"],
+      number: json["numero"]);
 }

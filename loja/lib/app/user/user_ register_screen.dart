@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loja/components/default_button.dart';
 import 'package:loja/shared/Constants.dart';
+import 'package:loja/shared/repository_shared.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class UserRegister extends StatefulWidget {
@@ -14,6 +15,12 @@ class _UserRegisterState extends State<UserRegister> {
   var maskDataFormatter = new MaskTextInputFormatter(mask: "##/##/####");
   var maskCpfFormatter = new MaskTextInputFormatter(mask: "###.###.###-##");
   var maskPhoneFormatter = new MaskTextInputFormatter(mask: "(##) # ####-####");
+  RepositoryShared repositoryShared;
+
+  void init() {
+    super.initState();
+    repositoryShared = RepositoryShared();
+  }
 
   Widget _body() {
     return Padding(
@@ -40,8 +47,8 @@ class _UserRegisterState extends State<UserRegister> {
                 text: 'Cadastrar',
                 press: () {
                   if (_formUser.currentState.validate()) {
-                    //salvar
-                    //ir para o menu do cliente
+                    //Cadastrar usuario
+
                   }
                 },
               ),

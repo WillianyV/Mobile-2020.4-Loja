@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:loja/app/login/repository_shared.dart';
+import 'package:loja/shared/repository_shared.dart';
 import 'package:loja/components/default_button.dart';
 import 'package:loja/routes/AppRoutes.dart';
 import 'package:loja/shared/Constants.dart';
@@ -16,6 +16,7 @@ class _LoginState extends State<Login> {
   var login, senha;
 
   RepositoryShared repositoryShared;
+  Response response;
 
   void initState() {
     super.initState();
@@ -45,9 +46,7 @@ class _LoginState extends State<Login> {
                         press: () {
                           if (_formLogin.currentState.validate()) {
                             //ir para o menu do cliente ou adm
-
-                            Navigator.pushNamed(
-                                context, AppRoutes.ECOMMECER_HOME);
+                            logar();
                           }
                         },
                       ),
@@ -194,5 +193,10 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Future<void> logar() async {}
+  Future<void> logar() async {
+    var entrar = await repositoryShared.logarLoja(login, senha);
+    if (entrar) {
+      Navigator.pushNamed(context, AppRoutes.ECOMMECER_HOME);
+    }
+  }
 }

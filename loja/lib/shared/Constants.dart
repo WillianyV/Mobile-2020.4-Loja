@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:loja/app/ecommerce/ecommerce_model.dart';
 
+ECommerce loja;
 const primaryColor = Color(0xFFfb5e5e);
 //E57373
 const primaryLightColor = Color(0xFFfb706f);

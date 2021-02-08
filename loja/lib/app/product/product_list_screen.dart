@@ -1,4 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:loja/components/drawer_loja.dart';
+import 'package:loja/routes/AppRoutes.dart';
+import 'package:loja/shared/Constants.dart';
 
 class Product_List extends StatefulWidget {
   @override
@@ -9,6 +13,32 @@ class _Product_ListState extends State<Product_List> {
   //ArrayList de produtos
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      drawer: DrawerLoja(),
+      appBar: AppBar(
+        title: Text('Lista de Produtos'),
+      ),
+      body: _body(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, AppRoutes.PRODUCT_CREATE);
+        },
+        child: Icon(Icons.add),
+        backgroundColor: primaryColor,
+      ),
+    );
+  }
+
+  Widget _body() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+      child: SingleChildScrollView(
+        child: Form(
+          child: Column(
+            children: [],
+          ),
+        ),
+      ),
+    );
   }
 }
