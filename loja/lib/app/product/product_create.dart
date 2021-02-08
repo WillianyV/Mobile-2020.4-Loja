@@ -18,6 +18,8 @@ class _ProductCreateState extends State<ProductCreate> {
   var maskMoneyController = MoneyMaskedTextController();
   var maskdicountController = MoneyMaskedTextController();
   File _file;
+
+  String categoryValue;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -230,14 +232,14 @@ class _ProductCreateState extends State<ProductCreate> {
               style: TextStyle(color: Colors.deepPurple),
               onChanged: (String newValue) {
                 setState(() {
-                  sizeValue = newValue;
+                  categoryValue = newValue;
                 });
               },
               items: <String>['Casual', 'Esporte', 'Formal']
-                  .map<DropdownMenuItem<String>>((String value) {
+                  .map<DropdownMenuItem<String>>((String valueCategoria) {
                 return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
+                  value: valueCategoria,
+                  child: Text(valueCategoria),
                 );
               }).toList(),
             ),
@@ -248,7 +250,7 @@ class _ProductCreateState extends State<ProductCreate> {
   }
 
   Future<void> _onclickCamera() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
       this._file = image;
     });
