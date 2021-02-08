@@ -13,7 +13,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   bool _showPassword = false;
   final _formLogin = GlobalKey<FormState>();
-  var login, senha;
+  String login, senha;
 
   RepositoryShared repositoryShared;
   Response response;
@@ -194,7 +194,7 @@ class _LoginState extends State<Login> {
   }
 
   Future<void> logar() async {
-    var entrar = await repositoryShared.logarLoja(login, senha);
+    bool entrar = await repositoryShared.logarLoja(login, senha);
     if (entrar) {
       Navigator.pushNamed(context, AppRoutes.ECOMMECER_HOME);
     }
