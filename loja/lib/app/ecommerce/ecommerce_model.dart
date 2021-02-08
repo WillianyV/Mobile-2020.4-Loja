@@ -3,7 +3,7 @@ import 'package:loja/app/address/address_model.dart';
 import 'package:loja/app/sale/sale_model.dart';
 
 class ECommerce {
-  final String id;
+  final int id;
   final String name;
   final String cnpj;
   final String phone;
