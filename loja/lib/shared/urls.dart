@@ -1,4 +1,5 @@
 const String dominio = "192.168.100.8";
+
 const String keyApiImg = "3ce2b86738aec37f2a04c91cf31412ce";
 
 const api = "http://${dominio}:8080/api/";
