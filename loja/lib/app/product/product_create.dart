@@ -5,6 +5,7 @@ import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loja/components/drawer_loja.dart';
 import 'package:loja/shared/Constants.dart';
+import 'package:loja/shared/repository_shared.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class ProductCreate extends StatefulWidget {
@@ -15,11 +16,15 @@ class ProductCreate extends StatefulWidget {
 
 class _ProductCreateState extends State<ProductCreate> {
   String sizeValue;
+  String categoryValue;
+  RepositoryShared repositoryShared = RepositoryShared();
+
   var maskMoneyController = MoneyMaskedTextController();
   var maskdicountController = MoneyMaskedTextController();
   File _file;
 
-  String categoryValue;
+  String _urlImg;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +89,7 @@ class _ProductCreateState extends State<ProductCreate> {
     return TextFormField(
       decoration: InputDecoration(
         labelText: "Nome",
-        hintText: "Digite o seu nome",
+        hintText: "Digite o nome do produto",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: Padding(
           padding: const EdgeInsets.only(left: 5),
@@ -225,7 +230,7 @@ class _ProductCreateState extends State<ProductCreate> {
             SizedBox(width: 30),
             DropdownButton<String>(
               hint: Text("Selecione uma categoria"),
-              value: sizeValue,
+              value: categoryValue,
               icon: Icon(Icons.keyboard_arrow_down),
               iconSize: 24,
               elevation: 16,
@@ -250,9 +255,12 @@ class _ProductCreateState extends State<ProductCreate> {
   }
 
   Future<void> _onclickCamera() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    this._urlImg = await repositoryShared.uploadImg(this._file);
     setState(() {
       this._file = image;
+
+      // this._urlImg = await repositoryShared.uploadImg(this._file);
     });
   }
 }
