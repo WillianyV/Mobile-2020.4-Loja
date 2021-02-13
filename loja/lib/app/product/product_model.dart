@@ -18,4 +18,14 @@ class Product {
       this.discount,
       @required this.category,
       @required this.imagem_url});
+
+  factory Product.fromJson(Map<String, dynamic> json) => Product(
+      id: json["id"],
+      name: json["nome"],
+      description: json["descricao"],
+      size: json["tamanho"],
+      price: json["valor"],
+      discount: json["desconto"],
+      category: json["categoria"],
+      imagem_url: json["imagem_url"]);
 }
