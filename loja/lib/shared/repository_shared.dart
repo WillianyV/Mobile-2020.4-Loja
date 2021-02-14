@@ -36,4 +36,16 @@ class RepositoryShared {
       return false;
     }
   }
+
+  Future<String> uploadImg(var file) async {
+    var params = {"image": file};
+    Response response = await this.dio.post(url_uploadImg, data: params);
+
+    if (response.statusCode == 200) {
+      print("object");
+      return response.data['url'];
+    } else {
+      return null;
+    }
+  }
 }
