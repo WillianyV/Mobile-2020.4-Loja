@@ -256,11 +256,12 @@ class _ProductCreateState extends State<ProductCreate> {
 
   Future<void> _onclickCamera() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
-    this._urlImg = await repositoryShared.uploadImg(this._file);
+
     setState(() {
       this._file = image;
 
       // this._urlImg = await repositoryShared.uploadImg(this._file);
     });
+    this._urlImg = await repositoryShared.uploadImg(this._file);
   }
 }

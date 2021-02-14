@@ -4,6 +4,7 @@ import 'package:loja/app/product/product_model.dart';
 import 'package:loja/shared/urls.dart';
 import 'package:loja/shared/Constants.dart';
 import 'dart:convert' as convert;
+import 'dart:io' as Io;
 
 class RepositoryShared {
   Dio dio;
@@ -42,7 +43,6 @@ class RepositoryShared {
     Response response = await this.dio.post(url_uploadImg, data: params);
 
     if (response.statusCode == 200) {
-      print("object");
       return response.data['url'];
     } else {
       return null;
