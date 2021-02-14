@@ -41,14 +41,58 @@ class _Product_ListState extends State<Product_List> {
   }
 
   Widget _body() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
         child: ListView.builder(
-          itemCount: products.length,
-          //  itemBuilder: (ctx, i) => ProductTitle(products.byIndex(i)),
-        ),
-      ),
-    );
+            itemCount: products.length,
+            itemBuilder: (ctx, i) {
+              Product product = products[i];
+              return ListTile(
+                leading: Image.network(product.imagem_url),
+                title: Text(product.name),
+                subtitle: Text(product.price.toStringAsFixed(2)),
+                trailing: Container(
+                    width: 100,
+                    child: Row(
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(Icons.edit),
+                          color: Colors.orange,
+                          onPressed: () {
+                            // Navigator.of(context).pushNamed();
+                          },
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.delete),
+                          color: Colors.red,
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (ctx) => AlertDialog(
+                                title: Text('Excluir Produto'),
+                                content: Text('Tem certeza?'),
+                                actions: [
+                                  FlatButton(
+                                    child: Text('Não'),
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(false),
+                                  ),
+                                  FlatButton(
+                                    child: Text('Sim'),
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(true),
+                                  ),
+                                ],
+                              ),
+                            ).then((confimed) {
+                              if (confimed) {
+                                //remover
+                              }
+                            });
+                          },
+                        ),
+                      ],
+                    )),
+              );
+            }));
   }
 }
