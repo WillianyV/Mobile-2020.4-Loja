@@ -17,6 +17,7 @@ class ProductCreate extends StatefulWidget {
 }
 
 class _ProductCreateState extends State<ProductCreate> {
+  final _formCreateProduct = new GlobalKey<FormState>();
   String sizeValue;
   String categoryValue;
   RepositoryShared repositoryShared = RepositoryShared();
@@ -140,7 +141,7 @@ class _ProductCreateState extends State<ProductCreate> {
       },
       onChanged: (value) {
         setState(() {
-          _price = double.parse(value);
+          _price = maskMoneyController.numberValue;
         });
       },
     );
@@ -170,7 +171,7 @@ class _ProductCreateState extends State<ProductCreate> {
       },
       onChanged: (value) {
         setState(() {
-          _discount = double.parse(value);
+          _discount = maskdicountController.numberValue;
         });
       },
     );

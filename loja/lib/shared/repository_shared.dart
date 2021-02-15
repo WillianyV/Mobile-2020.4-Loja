@@ -48,8 +48,10 @@ class RepositoryShared {
       "tamanho": product.size,
       "valor": product.price
     });
-    Product product_register = Product.fromJson(response.data);
-    return product_register;
+    if (response.statusCode == 200) {
+      return Product.fromJson(response.data);
+    }
+    return null;
   }
 
   Future<bool> logarLoja(String login, String senha) async {
