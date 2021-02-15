@@ -28,6 +28,30 @@ class RepositoryShared {
     return null;
   }
 
+  Future<Product> createProduct(Product product) async {
+    Map<String, dynamic> map = {
+      "categoria": product.category,
+      "desconto": product.discount,
+      "descricao": product.description,
+      "imagem_url": product.imagem_url,
+      "nome": product.name,
+      "tamanho": product.size,
+      "valor": product.price
+    };
+    FormData formData = FormData.fromMap(map);
+    Response response = await this.dio.post(url_createProduct, data: {
+      "categoria": product.category,
+      "desconto": product.discount,
+      "descricao": product.description,
+      "imagem_url": product.imagem_url,
+      "nome": product.name,
+      "tamanho": product.size,
+      "valor": product.price
+    });
+    Product product_register = Product.fromJson(response.data);
+    return product_register;
+  }
+
   Future<bool> logarLoja(String login, String senha) async {
     Response response = await this.dio.get("${url_login}${login}/${senha}");
     if (response.statusCode == 200) {
@@ -39,11 +63,19 @@ class RepositoryShared {
   }
 
   Future<String> uploadImg(var file) async {
-    var params = {"image": file};
-    Response response = await this.dio.post(url_uploadImg, data: params);
+    List<int> bytes = file.readAsBytesSync();
+    String base64 = convert.base64Encode(bytes);
+
+    //print(base64);
+
+    Map<String, dynamic> params = {'image': base64};
+    FormData formData = FormData.fromMap(params);
+
+    Response response = await this.dio.post(url_uploadImg, data: formData);
 
     if (response.statusCode == 200) {
-      return response.data['url'];
+      var dados = response.data['data'];
+      return dados['url'];
     } else {
       return null;
     }

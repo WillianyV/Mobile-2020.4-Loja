@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:loja/app/product/product_model.dart';
 import 'package:loja/components/drawer_loja.dart';
+import 'package:loja/routes/AppRoutes.dart';
 import 'package:loja/shared/Constants.dart';
 import 'package:loja/shared/repository_shared.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -22,8 +24,12 @@ class _ProductCreateState extends State<ProductCreate> {
   var maskMoneyController = MoneyMaskedTextController();
   var maskdicountController = MoneyMaskedTextController();
   File _file;
-
+  Product _product;
   String _urlImg;
+  String _name;
+  double _price;
+  double _discount;
+  String _description;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +46,9 @@ class _ProductCreateState extends State<ProductCreate> {
   Widget registerButton() {
     return FloatingActionButton(
       child: Icon(Icons.save),
+      onPressed: () {
+        _save();
+      },
     );
   }
 
@@ -102,6 +111,11 @@ class _ProductCreateState extends State<ProductCreate> {
         }
         return null;
       },
+      onChanged: (value) {
+        setState(() {
+          _name = value;
+        });
+      },
     );
   }
 
@@ -123,6 +137,11 @@ class _ProductCreateState extends State<ProductCreate> {
           return 'Preço inválido.';
         }
         return null;
+      },
+      onChanged: (value) {
+        setState(() {
+          _price = double.parse(value);
+        });
       },
     );
   }
@@ -149,6 +168,11 @@ class _ProductCreateState extends State<ProductCreate> {
         }
         return null;
       },
+      onChanged: (value) {
+        setState(() {
+          _discount = double.parse(value);
+        });
+      },
     );
   }
 
@@ -169,6 +193,11 @@ class _ProductCreateState extends State<ProductCreate> {
           return 'Nome inválido.';
         }
         return null;
+      },
+      onChanged: (value) {
+        setState(() {
+          _description = value;
+        });
       },
     );
   }
@@ -263,5 +292,19 @@ class _ProductCreateState extends State<ProductCreate> {
       // this._urlImg = await repositoryShared.uploadImg(this._file);
     });
     this._urlImg = await repositoryShared.uploadImg(this._file);
+  }
+
+  void _save() {
+    _product = Product(
+        name: _name,
+        description: _description,
+        size: sizeValue,
+        price: _price,
+        category: categoryValue,
+        imagem_url: _urlImg);
+
+    if (repositoryShared.createProduct(_product) != null) {
+      Navigator.pushNamed(context, AppRoutes.PRODUCT_LIST);
+    }
   }
 }

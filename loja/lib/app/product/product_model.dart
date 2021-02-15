@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Product {
-  final String id;
+  final int id;
   final String name;
   final String description;
   final String size;
