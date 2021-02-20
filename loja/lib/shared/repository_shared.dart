@@ -15,16 +15,28 @@ class RepositoryShared {
 
   Future<List<Product>> findAllProducts() async {
     Response response = await this.dio.get(url_findAllProducts);
-    List<Product> products;
+    List<Product> products = new List();
+    //print(response.data['produto']);
     if (response.statusCode == 200) {
-      String json = response.data;
-      List mapResponse = convert.json.decode(json);
-      for (Map map in mapResponse) {
+      //String json = response.data;
+      //List mapResponse = convert.json.decode(json);
+      /*for (Map map in response.data) {
         Product product = Product.fromJson(map);
+        if (product != null) {
+          products.add(product);
+          print("Aqui");
+        }
+      }*/
+      /*for (int i = 0; i < 2; i++) {
+        Product product = Product.fromJson(response.data[i]);
         products.add(product);
-      }
-      return products;
+      }*/
+      //return products;
+      //print(products.length);
+      //print("opaaaa");
+      //return products;
     }
+
     return null;
   }
 

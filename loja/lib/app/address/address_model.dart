@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-
 class Address {
-  final String id;
+  final int id;
   final String postcode;
   final String state;
   final String city;
