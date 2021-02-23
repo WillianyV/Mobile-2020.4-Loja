@@ -5,6 +5,7 @@ import 'package:loja/routes/AppRoutes.dart';
 import 'package:loja/shared/Constants.dart';
 import 'package:loja/app/product/product_model.dart';
 import 'package:loja/shared/repository_shared.dart';
+import 'package:provider/provider.dart';
 
 class Product_List extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _Product_ListState extends State<Product_List> {
 
   void initState() {
     super.initState();
-    //getProducts();
+    getProducts();
   }
 
   @override
@@ -34,6 +35,7 @@ class _Product_ListState extends State<Product_List> {
       body: products != null ? _body() : Scaffold(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          editar = false;
           Navigator.pushNamed(context, AppRoutes.PRODUCT_CREATE);
         },
         child: Icon(Icons.add),
@@ -60,7 +62,7 @@ class _Product_ListState extends State<Product_List> {
                       icon: Icon(Icons.edit),
                       color: Colors.orange,
                       onPressed: () {
-                        // Navigator.of(context).pushNamed();
+                        _editar(product);
                       },
                     ),
                     IconButton(
@@ -87,7 +89,10 @@ class _Product_ListState extends State<Product_List> {
                           ),
                         ).then((confimed) {
                           if (confimed) {
-                            //remover
+                            deletar(product.id);
+                            setState(() {
+                              getProducts();
+                            });
                           }
                         });
                       },
@@ -99,9 +104,20 @@ class _Product_ListState extends State<Product_List> {
   }
 
   Future<void> getProducts() async {
-    //this.products = await repositoryShared.findAllProducts();
+    this.products = await repositoryShared.findAllProducts();
     setState(() {
-      //this.products;
+      this.products;
+      editar = false;
     });
+  }
+
+  void deletar(int id) {
+    repositoryShared.deleteProduct(id);
+  }
+
+  void _editar(Product product) {
+    productEdit = product;
+    editar = true;
+    Navigator.pushNamed(context, AppRoutes.PRODUCT_UPDATE);
   }
 }

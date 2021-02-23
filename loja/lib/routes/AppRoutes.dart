@@ -7,4 +7,5 @@ class AppRoutes {
   static const ECOMMECER_HOME = '/e-commecer-home';
   static const PRODUCT_LIST = "/product-list";
   static const PRODUCT_CREATE = "/product-create";
+  static const PRODUCT_UPDATE = "/product-update";
 }

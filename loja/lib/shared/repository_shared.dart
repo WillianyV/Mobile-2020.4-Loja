@@ -17,27 +17,13 @@ class RepositoryShared {
     Response response = await this.dio.get(url_findAllProducts);
     List<Product> products = new List();
     //print(response.data['produto']);
-    if (response.statusCode == 200) {
-      //String json = response.data;
-      //List mapResponse = convert.json.decode(json);
-      /*for (Map map in response.data) {
-        Product product = Product.fromJson(map);
-        if (product != null) {
-          products.add(product);
-          print("Aqui");
-        }
-      }*/
-      /*for (int i = 0; i < 2; i++) {
-        Product product = Product.fromJson(response.data[i]);
-        products.add(product);
-      }*/
-      //return products;
-      //print(products.length);
-      //print("opaaaa");
-      //return products;
+    try {
+      return (response.data as List)
+          .map((item) => Product.fromJson(item))
+          .toList();
+    } catch (e) {
+      return null;
     }
-
-    return null;
   }
 
   Future<Product> createProduct(Product product) async {
@@ -64,6 +50,39 @@ class RepositoryShared {
       return Product.fromJson(response.data);
     }
     return null;
+  }
+
+  Future<Product> UpdateProduct(Product product) async {
+    Map<String, dynamic> map = {
+      "id": product.id,
+      "categoria": product.category,
+      "desconto": product.discount,
+      "descricao": product.description,
+      "imagem_url": product.imagem_url,
+      "nome": product.name,
+      "tamanho": product.size,
+      "valor": product.price
+    };
+    FormData formData = FormData.fromMap(map);
+    print("Editar");
+    Response response = await this.dio.put(url_updateProducts, data: {
+      "id": product.id,
+      "categoria": product.category,
+      "desconto": product.discount,
+      "descricao": product.description,
+      "imagem_url": product.imagem_url,
+      "nome": product.name,
+      "tamanho": product.size,
+      "valor": product.price
+    });
+    if (response.statusCode == 200) {
+      return Product.fromJson(response.data);
+    }
+    return null;
+  }
+
+  Future<void> deleteProduct(int id) async {
+    Response response = await this.dio.delete(url_deleteProducts + "${id}");
   }
 
   Future<bool> logarLoja(String login, String senha) async {

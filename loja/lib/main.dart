@@ -4,6 +4,7 @@ import 'package:loja/app/forgot_password/forgot_password_screen.dart';
 import 'package:loja/app/login/LoginScreem.dart';
 import 'package:loja/app/product/product_create.dart';
 import 'package:loja/app/product/product_list_screen.dart';
+import 'package:loja/app/product/product_update.dart';
 import 'package:loja/app/user/user_%20register_screen.dart';
 import 'package:loja/shared/repository_shared.dart';
 import 'package:loja/shared/theme.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.ECOMMECER_HOME: (_) => ECommecerHome(),
         AppRoutes.PRODUCT_LIST: (_) => Product_List(),
         AppRoutes.PRODUCT_CREATE: (_) => ProductCreate(),
+        AppRoutes.PRODUCT_UPDATE: (_) => ProductUpdate()
       },
     );
   }
