@@ -19,6 +19,16 @@ class Product {
       @required this.category,
       @required this.imagem_url});
 
+  const Product.padrao(
+      {this.id = 0,
+      this.name = " ",
+      this.description = " ",
+      this.size,
+      this.price = 0,
+      this.discount = 0,
+      this.category,
+      this.imagem_url = " "});
+
   factory Product.fromJson(Map<String, dynamic> json) => Product(
       id: json["id"],
       name: json["nome"],

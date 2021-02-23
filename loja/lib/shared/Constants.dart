@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:loja/app/ecommerce/ecommerce_model.dart';
+import 'package:loja/app/product/product_model.dart';
 
 ECommerce loja;
+Product productEdit;
+
+bool editar = false;
+
 const primaryColor = Color(0xFFfb5e5e);
 //E57373
 const primaryLightColor = Color(0xFFfb706f);
